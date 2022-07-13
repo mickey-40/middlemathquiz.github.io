@@ -19,6 +19,8 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .flex-column {
@@ -26,4 +28,37 @@ body {
   flex-direction: column;
 }
 
+@media screen and (max-width: 650px){
+  body {
+    background-color: purple;
+  }
+  .btn {
+    font-size: 6vw;
+    padding: 2rem 0;
+    width: 30rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: #000000;
+    background: linear-gradient(90deg, blue 0%, green 100%);
+    border-radius: 4px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+  }
+  
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-center {
+    justify-content: center;
+  }
+
+}
 

@@ -1,0 +1,26 @@
+body {
+  background-color: #FFDEDE;
+  text-align: center;
+
+}
+
+.timer, .pointsContainer, .questionContainer{
+  background-color: #ABC9FF;
+}
+
+.choicesContainer {
+  background-color: #FF8B8B;
+}
+
+.screenTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.timer, .pointsContainer {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+}
+
