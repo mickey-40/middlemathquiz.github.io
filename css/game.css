@@ -1,36 +1,25 @@
-body {
-  background-color: #FFDEDE;
-  text-align: center;
-
-}
-
-.timer, .pointsContainer, .questionContainer{
-  background-color: #ABC9FF;
-}
-
-.choicesContainer {
-  background-color: #FF8B8B;
-}
-
-.screenTop {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.timer, .pointsContainer {
-  display: flex;
-  justify-content: center;
-  width: 100px;
-}
-.btn {
-  font-size: 12pt;
-  width: 30rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  text-decoration: none;
-  color: #000000;
-  background-color: #ABC9FF;
-  border-radius: 4px;
+#timer{
   border: 5px solid black;
+}
+
+.scoremeter{
+  border: 5px solid black;
+}
+
+.name{
+  border: 5px solid black;
+}
+
+.question{
+  border: 5px solid black;
+}
+
+.choiceContainer{
+  border: 5px solid black;
+}
+
+#hud {
+  display: flex;
+  justify-content: space-between;
+  
 }
