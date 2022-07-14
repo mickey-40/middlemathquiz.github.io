@@ -1,3 +1,11 @@
+const nameScore = document.querySelector('.name')
+const questionElement = document.querySelector('.question')
+const choices = Array.from(document.querySelectorAll('.choice-text'))
+let randomQuestion; 
+let currentQuestionIndex;
+
+
+
 class Player {
   constructor(label, score =0) {
     this.label = label;
@@ -6,9 +14,33 @@ class Player {
 }
 const player1 = new Player()
 
-// player1.name = prompt('Enter player name: ', 'Enter name here')
 
-// document.querySelector('.name').innerText = `${player1.name}: ${player1.score}`
+document.querySelector('.submit').addEventListener('click', function(){
+  document.querySelector('.nameEntry').classList.add('hidden')
+  document.querySelector('.gameContainer').classList.remove('hidden')
+  player1.label = document.querySelector('#name').value
+  document.querySelector('.name').innerText = player1.label + ' ' + player1.score
+  setInterval(timer, 1000)
+  setInterval(scoreCounter, 1000)
+  getquestion()
+  
+})
+getquestion = () => {
+  randomQuestion = Math.floor(Math.random() * questions.length)
+  currentQuestionIndex = questions[randomQuestion]
+  console.log(currentQuestionIndex)
+  questionElement.innerText = currentQuestionIndex.question
+
+  choices.forEach(choice => {
+    const number = choice.dataset['number']
+    choice.innerText = currentQuestionIndex['choice' + number]
+  })
+
+
+
+}
+
+
 
 // Set timer to count down from 30
 let startingTimer = 30;
@@ -16,31 +48,47 @@ let startingTimer = 30;
 let maxScore = 1000;
 
 // Update the count down every 1 second
-const x = setInterval(function() {
+timer = () => {
     
   // Output the result in an element with id="timer"
   document.querySelector("#timer").innerText = `${startingTimer} seconds`;
 
-  countDownTimer -= 1
+  startingTimer -= 1
     
   // If the count down is over, write some text 
   if (startingTimer < 0) {
-    clearInterval(x);
+    clearInterval(timer);
     document.querySelector("#timer").innerText = `EXPIRED`;
   }
-}, 1000);
-
-const scoreCounter = setInterval (function (){
+}
+//Set interval for the points aviable to go down every second until 0.
+scoreCounter = () => {
   document.querySelector('.scoremeter').innerText = maxScore + ' points left';
   maxScore -= 33;
 
-  if (intialScore < 0) {
+  if (maxScore < 0) {
     clearInterval(scoreCounter)
     document.querySelector('.scoremeter').innerText = 0;
   }
-}, 1000)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //List of questions in an array
-let questions = [
+const questions = [
   {
     question:'If 3a + 2 = a + 6, then which of these is incorrect?',
     choice1:'3a + 2 - a = 6',
@@ -184,24 +232,8 @@ let questions = [
     choice4:'subtract 16 from 400',
     answer: 3,
 
-  },
-
+  }
 ]
 
-let maxQuestion = 5
 
-startGame = () => {
-  questionCounter = 0
-  player1.score = 0
-  let num = Math.floor(Math.random()*question.length)
-  availableQuestions = questions[num]
-  getNewQuestion()
 
-}
-
-getNewQuestion = () => {
-  if (availableQuestions.length === 0 || questionCounter > maxQuestion) {
-    localStorage.setItem('mostRecentScore', player1.score)
-    return window.location.assign('/winning.html')
-  }
-}
