@@ -1,8 +1,10 @@
 const nameScore = document.querySelector('.name')
 const questionElement = document.querySelector('.question')
 const choices = Array.from(document.querySelectorAll('.choice-text'))
-let randomQuestion; 
-let currentQuestionIndex;
+let randomQuestion
+let currentQuestionIndex
+let askedQuestion = []
+let questionNum = 1
 
 
 
@@ -14,7 +16,7 @@ class Player {
 }
 const player1 = new Player()
 
-
+//This Event Listener starts the game after player enters name.
 document.querySelector('.submit').addEventListener('click', function(){
   document.querySelector('.nameEntry').classList.add('hidden')
   document.querySelector('.gameContainer').classList.remove('hidden')
@@ -25,17 +27,22 @@ document.querySelector('.submit').addEventListener('click', function(){
   getquestion()
   
 })
+//A function that puts a random question with the answer choices
 getquestion = () => {
+  
   randomQuestion = Math.floor(Math.random() * questions.length)
   currentQuestionIndex = questions[randomQuestion]
-  console.log(currentQuestionIndex)
-  questionElement.innerText = currentQuestionIndex.question
-
+  askedQuestion.push(currentQuestionIndex)
+  questionElement.innerText = `${questionNum}. ${currentQuestionIndex.question}`
+  //enters the answer choices
   choices.forEach(choice => {
     const number = choice.dataset['number']
     choice.innerText = currentQuestionIndex['choice' + number]
   })
-
+  //takes current question out of the array
+  questions.splice(currentQuestionIndex,1)
+  questionNum++
+  
 
 
 }
@@ -52,7 +59,7 @@ timer = () => {
     
   // Output the result in an element with id="timer"
   document.querySelector("#timer").innerText = `${startingTimer} seconds`;
-
+  //increments timer minus 1
   startingTimer -= 1
     
   // If the count down is over, write some text 
