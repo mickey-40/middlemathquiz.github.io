@@ -16,6 +16,12 @@ let maxScore = 1000;
 //set question limit to 5 for testing
 let maxQuestion = 5
 
+let startIntervals = () => {
+  timerInterval = setInterval(timer,1000)
+  scoreInterval = setInterval(scoreCounter, 1000)
+}
+
+
 
 
 
@@ -33,20 +39,23 @@ document.querySelector('.submit').addEventListener('click', function(){
   document.querySelector('.gameContainer').classList.remove('hidden')
   player1.label = document.querySelector('#name').value
   document.querySelector('.name').innerText = player1.label + ' ' + player1.score
-  // setInterval(timer, 1000)
-  // setInterval(scoreCounter, 1000)
+  
   getquestion()
+  
   
 })
 //A function that puts a random question with the answer choices
 let getquestion = () => {
+  
   if (questionNum > maxQuestion){
     location.href = 'winning.html'
   } 
-   console.log(questions)
-   
-  // timerInterval = setInterval(timer, 1000)
+
+  
+  //  console.log(questions)
+  // timerInterval = setInterval(timer,1000)
   // scoreInterval = setInterval(scoreCounter, 1000)
+ 
   
   randomQuestion = Math.floor(Math.random() * questions.length)
   currentQuestion = questions[randomQuestion]
@@ -54,8 +63,13 @@ let getquestion = () => {
   console.log(questions)
   console.log(askedQuestion)
   questionElement.innerText = `${questionNum}. ${currentQuestion.question}`
+  if (questionNum > 0){
+    clearIntervals()
+    startIntervals()
+  }
   //enters the answer choices
   choices.forEach(choice => {
+   
     const number = choice.dataset['number']
     choice.innerText = currentQuestion['choice' + number]
   })
@@ -65,39 +79,74 @@ let getquestion = () => {
   questionNum++
   console.log(questions.length)
   console.log(askedQuestion.length)
-}
-choices.forEach(choice => {
-  choice.addEventListener('click', e => {
-    // if (!acceptingAnswers) return
 
-    acceptingAnswers = false
-    const selectedChoice = e.target
-    const selectedAnswer = selectedChoice.dataset['number']
+  choices.forEach(choice => {
+    
+    choice.addEventListener('click', e => {
 
-
-    let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
-
-    // let classToApply;
-    console.log(selectedAnswer)
-    console.log(currentQuestion.answer)
-    console.log(classToApply)
-
-
-    selectedChoice.parentElement.classList.add(classToApply)
-
-    setTimeout(() => {
-      selectedChoice.parentElement.classList.remove(classToApply)
-      getquestion()
-     
-
-    }, 1000)
+      // if (!acceptingAnswers) return
+      
+      acceptingAnswers = false
+      const selectedChoice = e.target
+      const selectedAnswer = selectedChoice.dataset['number']
+  
+  
+      let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+  
+      // let classToApply;
+      console.log(selectedAnswer)
+      console.log(currentQuestion.answer)
+      console.log(classToApply)
+  
+  
+      selectedChoice.parentElement.classList.add(classToApply)
+      
+      setTimeout(() => {
+        selectedChoice.parentElement.classList.remove(classToApply)
+        clearInterval(timerInterval)
+        clearInterval(scoreInterval)
+        getquestion()
+        
+  
+      }, 1000)
+    })
   })
-})
+  
+}
 
 let clearIntervals = () => {
-    clearInterval(timerInterval)
-    clearInterval(scoreInterval)
+  clearInterval(timerInterval)
+  clearInterval(scoreInterval)
 }
+// choices.forEach(choice => {
+//   choice.addEventListener('click', e => {
+//     // if (!acceptingAnswers) return
+//     clearIntervals()
+//     acceptingAnswers = false
+//     const selectedChoice = e.target
+//     const selectedAnswer = selectedChoice.dataset['number']
+
+
+//     let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
+//     // let classToApply;
+//     console.log(selectedAnswer)
+//     console.log(currentQuestion.answer)
+//     console.log(classToApply)
+
+
+//     selectedChoice.parentElement.classList.add(classToApply)
+    
+//     setTimeout(() => {
+//       selectedChoice.parentElement.classList.remove(classToApply)
+//       getquestion()
+     
+
+//     }, 1000)
+//   })
+// })
+
+
 
 // incrementScore = (num) => {
 //   player1.score += num
@@ -114,7 +163,7 @@ timer = () => {
     
   // If the count down is over, write some text 
   if (startingTimer < 0) {
-    clearInterval(timer);
+    clearInterval(timerInterval);
     document.querySelector("#timer").innerText = `EXPIRED`;
   }
 }
@@ -124,7 +173,7 @@ scoreCounter = () => {
   maxScore -= 33;
 
   if (maxScore < 0 ) {
-    clearInterval(scoreCounter)
+    clearInterval(scoreInterval)
     document.querySelector('.scoremeter').innerText = 0;
   }
 }
