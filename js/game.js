@@ -1,197 +1,19 @@
-const nameScore = document.querySelector('.name')
-const questionElement = document.querySelector('.question')
+//Set variables globally so they could be used in multible functions
+let playerName = document.querySelector('#name')
+let nameBox = document.querySelector('.nameEntry')
+let gameBox = document.querySelector('.gameContainer')
+let questionElement = document.querySelector('.question')
 const choices = Array.from(document.querySelectorAll('.choice-text'))
-const scoreText = document.querySelector('.currentScore')
-let randomQuestion
-let currentQuestion
-let askedQuestion = []
-let questionNum = 1
-let acceptingAnswers = true
+let scoreBoard = document.querySelector('.name')
+let playerEndingScore = document.querySelector('.playerScore')
 let timerInterval
 let scoreInterval
-// Set timer to count down from 30
-let startingTimer = 30;
-//Set maxScore to 1000
-let maxScore = 1000;
-//set question limit to 5 for testing
-let maxQuestion = 5
-
-let startIntervals = () => {
-  timerInterval = setInterval(timer,1000)
-  scoreInterval = setInterval(scoreCounter, 1000)
-}
-
-
-
-
-
-class Player {
-  constructor(label, score =0) {
-    this.label = label;
-    this.score = score;
-  }
-}
-const player1 = new Player()
-
-//This Event Listener starts the game after player enters name.
-document.querySelector('.submit').addEventListener('click', function(){
-  document.querySelector('.nameEntry').classList.add('hidden')
-  document.querySelector('.gameContainer').classList.remove('hidden')
-  player1.label = document.querySelector('#name').value
-  document.querySelector('.name').innerText = player1.label + ' ' + player1.score
-  
-  getquestion()
-  
-  
-})
-//A function that puts a random question with the answer choices
-let getquestion = () => {
-  
-  if (questionNum > maxQuestion){
-    location.href = 'winning.html'
-  } 
-
-  
-  //  console.log(questions)
-  // timerInterval = setInterval(timer,1000)
-  // scoreInterval = setInterval(scoreCounter, 1000)
- 
-  
-  randomQuestion = Math.floor(Math.random() * questions.length)
-  currentQuestion = questions[randomQuestion]
-  askedQuestion.push(currentQuestion)
-  console.log(questions)
-  console.log(askedQuestion)
-  questionElement.innerText = `${questionNum}. ${currentQuestion.question}`
-  if (questionNum > 0){
-    clearIntervals()
-    startIntervals()
-  }
-  //enters the answer choices
-  choices.forEach(choice => {
-   
-    const number = choice.dataset['number']
-    choice.innerText = currentQuestion['choice' + number]
-  })
-  //takes current question out of the array
-  questions.splice(currentQuestion,1)
-  acceptingAnswers = true
-  questionNum++
-  console.log(questions.length)
-  console.log(askedQuestion.length)
-
-  choices.forEach(choice => {
-    
-    choice.addEventListener('click', e => {
-
-      // if (!acceptingAnswers) return
-      
-      acceptingAnswers = false
-      const selectedChoice = e.target
-      const selectedAnswer = selectedChoice.dataset['number']
-  
-  
-      let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
-  
-      // let classToApply;
-      console.log(selectedAnswer)
-      console.log(currentQuestion.answer)
-      console.log(classToApply)
-  
-  
-      selectedChoice.parentElement.classList.add(classToApply)
-      
-      setTimeout(() => {
-        selectedChoice.parentElement.classList.remove(classToApply)
-        clearInterval(timerInterval)
-        clearInterval(scoreInterval)
-        getquestion()
-        
-  
-      }, 1000)
-    })
-  })
-  
-}
-
-let clearIntervals = () => {
-  clearInterval(timerInterval)
-  clearInterval(scoreInterval)
-}
-// choices.forEach(choice => {
-//   choice.addEventListener('click', e => {
-//     // if (!acceptingAnswers) return
-//     clearIntervals()
-//     acceptingAnswers = false
-//     const selectedChoice = e.target
-//     const selectedAnswer = selectedChoice.dataset['number']
-
-
-//     let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
-
-//     // let classToApply;
-//     console.log(selectedAnswer)
-//     console.log(currentQuestion.answer)
-//     console.log(classToApply)
-
-
-//     selectedChoice.parentElement.classList.add(classToApply)
-    
-//     setTimeout(() => {
-//       selectedChoice.parentElement.classList.remove(classToApply)
-//       getquestion()
-     
-
-//     }, 1000)
-//   })
-// })
-
-
-
-// incrementScore = (num) => {
-//   player1.score += num
-//   scoreText.innerText = `${player1.score}`
-// }
-
-// Update the count down every 1 second
-timer = () => {
-    
-  // Output the result in an element with id="timer"
-  document.querySelector("#timer").innerText = `${startingTimer} seconds`;
-  //increments timer minus 1
-  startingTimer -= 1
-    
-  // If the count down is over, write some text 
-  if (startingTimer < 0) {
-    clearInterval(timerInterval);
-    document.querySelector("#timer").innerText = `EXPIRED`;
-  }
-}
-//Set interval for the points aviable to go down every second until 0.
-scoreCounter = () => {
-  document.querySelector('.scoremeter').innerText = maxScore + ' points left';
-  maxScore -= 33;
-
-  if (maxScore < 0 ) {
-    clearInterval(scoreInterval)
-    document.querySelector('.scoremeter').innerText = 0;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let startingTimer 
+let startingScore 
+let maxQuesitons = 5
+let randomQuestion
+let usedQuestionsArray = []
+let answerNumber
 
 //List of questions in an array
 const questions = [
@@ -341,5 +163,146 @@ const questions = [
   }
 ]
 
+class Player {
+  constructor(name, score = 0){
+    this.name = name,
+    this.score = score
+  }
+}
+
+const player1 = new Player()
+//Function that stores the player name and starts the game.
+const enterName = () => {
+  //Assigns value of the input to player1 name
+  player1.name = playerName.value
+  localStorage.setItem('name', player1.name)
+  //Assigns name and score to the game screen
+  scoreBoard.innerText = player1.name + ' ' + player.score
+  //This will add a class of hidden so it disappears
+  nameBox.classList.add('hidden')
+  //This will remove a class of hidden so it appears
+  gameBox.classList.remove('hidden')
+  //Calls getQuestion function to start the game.
+  this.getNewQuestion()
+}
+//count down timer function
+const timer = () => {
+  
+  //Puts starting timer in the game.html
+  document.querySelector("#timer").innerText = `${startingTimer} seconds`;
+  //increments timer minus 1
+  startingTimer -= 1
+    
+  // If the count down is over, write some text 
+  if (startingTimer < 0) {
+    clearInterval(timerInterval);
+    // document.querySelector("#timer").innerText = `EXPIRED`;
+  }
+}
+const scoreDecreasing = () => {
+  //Puts starting score in the game.html
+  document.querySelector('.scoremeter').innerText = `${startingScore} points`
+  //increments score minus 33 points per second
+  startingScore -= 33
+
+  if (startingScore <= 0){
+    startingScore = 0
+    document.querySelector('.scoremeter').innerText = `${startingScore} points`
+    clearInterval(scoreInterval)
+  }
+}
+const startIntervals = () => {
+  timerInterval = setInterval(timer, 1000)
+  scoreInterval = setInterval(scoreDecreasing, 1000)
+}
+const clearIntervals = () => {
+  clearInterval(timerInterval)
+  clearInterval(scoreInterval)
+}
+
+const getRandomQuestion = () => {
+  let randomNum = Math.floor(Math.random() * questions.length)
+  randomQuestion = questions[randomNum]
+  usedQuestionsArray.push(randomQuestion)
+  console.log(usedQuestionsArray)
+  questions.splice(randomQuestion,1)
+  console.log(questions)
+  return randomQuestion
+}
+
+const getNewQuestion = () => {
+  if (usedQuestionsArray.length >= 5){
+    location.href = 'winning.html'
+  }
+  startingTimer = 30
+  startingScore = 1000
+  startIntervals()
+  getRandomQuestion()
+  questionElement.innerText = `${usedQuestionsArray.length}. ${randomQuestion.question}`
+  choices.forEach(function(choice){
+    answerNumber = choice.dataset['number']
+    choice.innerText = randomQuestion['choice' + answerNumber]
+  })
+  // choices.forEach(function(choice){
+  //   answerNumber = choice.dataset['number']
+  //   choice.innerText = randomQuestion['choice' + answerNumber]
+  // })
+  // choices.forEach((choice) => {
+  //   choice.addEventListener('click', event =>{
+  //       //targets which choice is clicked
+  //       const selectedChoice = event.target
+  //       //Assigns number to choice selected
+  //       const selectedAnswer = selectedChoice.dataset['number']
+  //       //If the choice number matched the answer number then it will turn the div green if correct or red if incorrect. Then turns off after a second.
+  //       if(selectedAnswer == randomQuestion.answer){
+  //         selectedChoice.parentElement.classList.add('correct')
+  //         //Adds scored points to total points.
+  //         player1.score += startingScore
+  //         scoreBoard.innerText = this.name + ' ' + this.score
+  //         setTimeout(() => {
+  //           selectedChoice.parentElement.classList.remove('correct')
+  //           }, 100)
+  //           clearIntervals()
+            
+  //           getNewQuestion()
+  //       console.log(this.score)
+  //       } else {
+  //           selectedChoice.parentElement.classList.add('incorrect')
+  //           setTimeout(() => {
+  //             selectedChoice.parentElement.classList.remove('incorrect')
+  //           }, 100)
+  //           clearIntervals()
+  //           getNewQuestion()
+  //         }
+  //         })
+  //       })
+  
+}
 
 
+
+// choices.forEach(function(choice){
+//   answerNumber = choice.dataset['number']
+//   choice.innerText = randomQuestion['choice' + answerNumber]
+// })
+ 
+
+choices.forEach(function(choice){
+  choice.addEventListener('click', e => {
+    selectedChoice = e.target
+    selectedAnswer = selectedChoice.dataset['number']
+    if (selectedAnswer == randomQuestion.answer){
+      console.log('right')
+      selectedChoice.parentElement.classList.add('correct')
+      
+      getNewQuestion()
+    } else {
+      console.log('wrong')
+      selectedChoice.parentElement.classList.add('incorrect')
+      getNewQuestion()
+
+    }
+  })
+})
+
+getNewQuestion()
