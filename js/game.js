@@ -177,13 +177,13 @@ const enterName = () => {
   player1.name = playerName.value
   localStorage.setItem('name', player1.name)
   //Assigns name and score to the game screen
-  scoreBoard.innerText = player1.name + ' ' + player.score
+  scoreBoard.innerText = player1.name + ' ' + player1.score
   //This will add a class of hidden so it disappears
   nameBox.classList.add('hidden')
   //This will remove a class of hidden so it appears
   gameBox.classList.remove('hidden')
   //Calls getQuestion function to start the game.
-  this.getNewQuestion()
+  getNewQuestion()
 }
 //count down timer function
 const timer = () => {
@@ -232,7 +232,10 @@ const getRandomQuestion = () => {
 
 const getNewQuestion = () => {
   if (usedQuestionsArray.length >= 5){
+    localStorage.setItem('score', player1.score)
     location.href = 'winning.html'
+    return
+   
   }
   startingTimer = 30
   startingScore = 1000
@@ -243,48 +246,10 @@ const getNewQuestion = () => {
     answerNumber = choice.dataset['number']
     choice.innerText = randomQuestion['choice' + answerNumber]
   })
-  // choices.forEach(function(choice){
-  //   answerNumber = choice.dataset['number']
-  //   choice.innerText = randomQuestion['choice' + answerNumber]
-  // })
-  // choices.forEach((choice) => {
-  //   choice.addEventListener('click', event =>{
-  //       //targets which choice is clicked
-  //       const selectedChoice = event.target
-  //       //Assigns number to choice selected
-  //       const selectedAnswer = selectedChoice.dataset['number']
-  //       //If the choice number matched the answer number then it will turn the div green if correct or red if incorrect. Then turns off after a second.
-  //       if(selectedAnswer == randomQuestion.answer){
-  //         selectedChoice.parentElement.classList.add('correct')
-  //         //Adds scored points to total points.
-  //         player1.score += startingScore
-  //         scoreBoard.innerText = this.name + ' ' + this.score
-  //         setTimeout(() => {
-  //           selectedChoice.parentElement.classList.remove('correct')
-  //           }, 100)
-  //           clearIntervals()
-            
-  //           getNewQuestion()
-  //       console.log(this.score)
-  //       } else {
-  //           selectedChoice.parentElement.classList.add('incorrect')
-  //           setTimeout(() => {
-  //             selectedChoice.parentElement.classList.remove('incorrect')
-  //           }, 100)
-  //           clearIntervals()
-  //           getNewQuestion()
-  //         }
-  //         })
-  //       })
+  
   
 }
 
-
-
-// choices.forEach(function(choice){
-//   answerNumber = choice.dataset['number']
-//   choice.innerText = randomQuestion['choice' + answerNumber]
-// })
  
 
 choices.forEach(function(choice){
@@ -294,15 +259,26 @@ choices.forEach(function(choice){
     if (selectedAnswer == randomQuestion.answer){
       console.log('right')
       selectedChoice.parentElement.classList.add('correct')
-      
+      setTimeout(() => {
+        selectedChoice.parentElement.classList.remove('correct')
+
+      }, 100);
+      player1.score += startingScore
+      console.log(player1.score)
+      clearIntervals()
       getNewQuestion()
     } else {
       console.log('wrong')
       selectedChoice.parentElement.classList.add('incorrect')
+      setTimeout(() => {
+        selectedChoice.parentElement.classList.remove('incorrect')
+
+      }, 100);
+      clearIntervals()
       getNewQuestion()
 
     }
   })
 })
 
-getNewQuestion()
+// getNewQuestion()
