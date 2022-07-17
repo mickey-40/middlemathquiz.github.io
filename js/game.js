@@ -176,8 +176,7 @@ const enterName = () => {
   //Assigns value of the input to player1 name
   player1.name = playerName.value
   localStorage.setItem('name', player1.name)
-  //Assigns name and score to the game screen
-  scoreBoard.innerText = player1.name + ' ' + player1.score
+  
   //This will add a class of hidden so it disappears
   nameBox.classList.add('hidden')
   //This will remove a class of hidden so it appears
@@ -231,7 +230,9 @@ const getRandomQuestion = () => {
 }
 
 const getNewQuestion = () => {
-  if (usedQuestionsArray.length >= 5){
+  //Assigns name and score to the game screen
+  scoreBoard.innerText = player1.name + ' ' + player1.score
+  if (usedQuestionsArray.length >= maxQuesitons){
     localStorage.setItem('score', player1.score)
     location.href = 'winning.html'
     return
