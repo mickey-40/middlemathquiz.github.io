@@ -10,9 +10,9 @@
 
 <body>
   <div class="nameEntry">
-    <label for="name">Enter Name: </label>
-    <input type="text" id="name" name="name">
-    <input type="submit" value="Click here to start game" class="submit" onclick="enterName()">
+    <label for="name" class="nameBox">Enter Name:</label>
+    <input type="text" id="name" placeholder="Name" class="inputBox pad" name="name">
+    <input type="submit" value="Click here to start game" class="btn" onclick="enterName()">
     
   </div>
   <div class="gameContainer hidden" >
@@ -31,20 +31,20 @@
     <div>
       <p class="question">The question goes here.</p>
     </div>
-    <div class="choiceContainer" onclick="">
-      <p class="choice-prefix">A</p>
-      <p class="choice-text" data-number="1">Choice 1</p>
+    <div class="choiceContainer btn" onclick="">
+      <p class="choice-prefix">A. </p>
+      <p class="choice-text " data-number="1">Choice 1</p>
     </div>
-    <div class="choiceContainer" onclick="">
-      <p class="choice-prefix">B</p>
+    <div class="choiceContainer btn" onclick="">
+      <p class="choice-prefix">B. </p>
       <p class="choice-text" data-number="2">Choice 2</p>
     </div>
-    <div class="choiceContainer" onclick="">
-      <p class="choice-prefix">C</p>
+    <div class="choiceContainer btn" onclick="">
+      <p class="choice-prefix">C. </p>
       <p class="choice-text" data-number="3">Choice 3</p>
     </div>
-    <div class="choiceContainer" onclick="">
-      <p class="choice-prefix">D</p>
+    <div class="choiceContainer btn" onclick="">
+      <p class="choice-prefix">D. </p>
       <p class="choice-text" data-number="4">Choice 4</p>
     </div>
   </div>

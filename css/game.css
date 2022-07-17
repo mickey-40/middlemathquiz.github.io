@@ -1,3 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:wght@400;700&display=swap');
+
+body {
+  background-color:rgb(47, 151, 255);
+  font-family: 'Ibarra Real Nova', serif;
+}
+
+.nameEntry{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 10px;
+  
+  /* margin-left: auto;
+  margin-right: auto; */
+  width: 80vw;
+  font-size: 1.8rem;
+  padding: 100px 100px;
+  /* margin-top: 200px; */
+  border: 5px solid black;
+}
+
+.inputBox {
+  height: 20px;
+  
+  margin: auto;
+  text-align: center;
+  
+  
+}
+.nameBox {
+  margin:auto;
+  padding: 10px 10px 20px 10px;
+}
+
+.btn {
+  display: flex;
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  border-radius: 12px;
+  box-shadow: 4px 5px 7px #666666;
+  font-family: Arial;
+  color: #000000;
+  font-size: 20px;
+  padding: 10px 10px 10px 10px;
+  border: solid #000000 2px;
+  margin: auto;
+  text-decoration: none;
+
+}
+
+/* .btn:hover {
+ background-color: aqua;
+  
+} */
+
 #timer{
   border: 5px solid black;
 }
@@ -12,10 +68,15 @@
 
 .question{
   border: 5px solid black;
+  font-size: 1.3rem;
 }
 
 .choiceContainer{
   border: 5px solid black;
+}
+
+.choice-text {
+  width:50px;
 }
 
 #hud {

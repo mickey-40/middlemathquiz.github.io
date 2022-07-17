@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:wght@400;700&display=swap');
+
 body {
   background-color:rgb(47, 151, 255);
+  font-family: 'Ibarra Real Nova', serif;
 }
 
 .btn {
+  font-family: 'Ibarra Real Nova', serif;
   font-size: 2.4rem;
   padding: 2rem 0;
   width: 30rem;
@@ -12,6 +16,15 @@ body {
   color: #000000;
   background: linear-gradient(90deg, blue 0%, green 100%);
   border-radius: 4px;
+  box-shadow: 2px 2px #000000;
+
+}
+
+.btn:hover{
+  width: 30.5rem;
+  font-family: 'Ibarra Real Nova', serif;
+  font-weight: 700;
+  box-shadow: 5px 5px #000000;
 }
 
 .container {

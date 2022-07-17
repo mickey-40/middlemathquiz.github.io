@@ -171,6 +171,7 @@ class Player {
 }
 
 const player1 = new Player()
+
 //Function that stores the player name and starts the game.
 const enterName = () => {
   //Assigns value of the input to player1 name
@@ -182,6 +183,7 @@ const enterName = () => {
   //This will remove a class of hidden so it appears
   gameBox.classList.remove('hidden')
   //Calls getQuestion function to start the game.
+  console.log(player1)
   getNewQuestion()
 }
 //count down timer function
@@ -220,6 +222,7 @@ const clearIntervals = () => {
 }
 
 const getRandomQuestion = () => {
+  console.log(questions.length)
   let randomNum = Math.floor(Math.random() * questions.length)
   randomQuestion = questions[randomNum]
   usedQuestionsArray.push(randomQuestion)
@@ -233,7 +236,7 @@ const getNewQuestion = () => {
   //Assigns name and score to the game screen
   scoreBoard.innerText = player1.name + ' ' + player1.score
   if (usedQuestionsArray.length >= maxQuesitons){
-    localStorage.setItem('score', player1.score)
+    localStorage.setItem('score',player1.score)
     location.href = 'winning.html'
     return
    
@@ -282,4 +285,3 @@ choices.forEach(function(choice){
   })
 })
 
-// getNewQuestion()
