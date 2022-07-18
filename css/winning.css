@@ -6,29 +6,38 @@ body {
 }
 
 .userScore {
-  border: 5px solid black;
+  /* border: 5px solid black; */
   text-align: center;
   font-size: 2.2rem;
   width: 100%;
+  margin-top: 20px;
 }
- .highScore {
+ .container {
   background-color: #FF8B8B;
-  border: 5px solid black;
-  width:100%;
+  border: 5px solid gold;
+  width: 60%;
+  margin: auto;
   
  }
+
+ h1{
+  text-align: center;
+  border-bottom: 5px solid gold; }
  .listTitle {
   border-bottom: 2px solid black;
   text-align: center;
   margin: 0 auto 10px;
   font-size: 2rem;
  }
- .highScoreList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
+ #highScoreList {
+  columns: 150px 2;
+  
+ }
+
+ li{
   font-size: 2rem;
+  text-align: center;
+ 
  }
 
  .btn {
