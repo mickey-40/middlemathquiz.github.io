@@ -160,6 +160,51 @@ const questions = [
     choice4:'subtract 16 from 400',
     answer: 3,
 
+  },
+  {
+    question:' A pizza is divided into 12 slices. If there are eight slices left, what fraction of the pizza is remaining?',
+    choice1:'3/4',
+    choice2:'2/3',
+    choice3:'1/2',
+    choice4:'2/4',
+    answer: 2,
+
+  },
+  {
+    question:'In a recipe, you have to add one cup of sugar for every four cups of flour. What is the ratio of sugar to flour?',
+    choice1:'4:1',
+    choice2:'2:4',
+    choice3:'1:2',
+    choice4:'1:4',
+    answer: 4,
+
+  },
+  {
+    question:'It takes Matt four hours to mow two lawns. How many lawns can he mow in ten hours?',
+    choice1:'Two lawns',
+    choice2:'Five lawns',
+    choice3:'Ten lawns',
+    choice4:'Six lawns',
+    answer: 2,
+
+  },
+  {
+    question:'20 = 3x + 8; x = ?',
+    choice1:'3',
+    choice2:'2',
+    choice3:'4',
+    choice4:'5',
+    answer: 3,
+
+  },
+  {
+    question:'If y = 3x + 12 and y = 5, what is x?',
+    choice1:'7/3',
+    choice2:'3/7',
+    choice3:'-7',
+    choice4:'-7/3',
+    answer: 4,
+
   }
 ]
 
