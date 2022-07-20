@@ -1,31 +1,30 @@
-
+const playername = localStorage.getItem('name')
 const playerscore = localStorage.getItem('score')
 
 document.querySelector('.playerScore').innerText = `${playerscore} points`
-const playername = localStorage.getItem('name')
+
 document.querySelector('.playerName').innerText = `${playername}'s Score`
-let listScores = []
+
+const playerInfo = JSON.parse(localStorage.getItem('player')) 
+
+const highScores = JSON.parse(localStorage.getItem('highScores')) || []
+
+console.log(playerInfo)
+console.log(highScores)
+
 const score = {
-  name : playername,
-  score: playerscore
+  score : playerInfo.score,
+  name : playerInfo.name
 }
+console.log(score)
 
+highScores.push(score)
+console.log(highScores)
 
-// console.log(listString2)
+highScores.sort((a,b) => {
+  return b.score - a.score;
+})
 
+highScores.splice(5)
 
-// console.log(scoreObj)
-
-// highScores.push(scoreObj)
-
-// highScores.push(scoreObj)
-// console.log(highScores)
-
-// highScores.sort( (a,b) => {
-//   return b.score - a.score;
-// })
-
-// highScores.splice(10);
-
-// console.log(highScores)
-
+console.log(highScores)

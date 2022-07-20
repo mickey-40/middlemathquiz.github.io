@@ -271,8 +271,10 @@ const getRandomQuestion = () => {
   let randomNum = Math.floor(Math.random() * questions.length)
   randomQuestion = questions[randomNum]
   usedQuestionsArray.push(randomQuestion)
+  console.log('usedQuestionsArray length: ' ,usedQuestionsArray.length)
   console.log(usedQuestionsArray)
   questions.splice(randomQuestion,1)
+  console.log('question Array length: ', questions.length)
   console.log(questions)
   return randomQuestion
 }
@@ -281,7 +283,9 @@ const getNewQuestion = () => {
   //Assigns name and score to the game screen
   scoreBoard.innerText = player1.name + ' ' + player1.score
   if (usedQuestionsArray.length >= maxQuesitons){
-    localStorage.setItem('score',player1.score)
+    localStorage.setItem('score', player1.score)
+    console.log(player1)
+    localStorage.setItem('player', JSON.stringify(player1))
     location.href = 'winning.html'
     return
    
