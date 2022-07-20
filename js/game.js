@@ -267,15 +267,16 @@ const clearIntervals = () => {
 }
 
 const getRandomQuestion = () => {
-  console.log(questions.length)
+  console.log('question Array length: ', questions.length)
   let randomNum = Math.floor(Math.random() * questions.length)
   randomQuestion = questions[randomNum]
   usedQuestionsArray.push(randomQuestion)
   console.log('usedQuestionsArray length: ' ,usedQuestionsArray.length)
   console.log(usedQuestionsArray)
-  questions.splice(randomQuestion,1)
+  questions.splice(randomNum,1)
   console.log('question Array length: ', questions.length)
   console.log(questions)
+  console.log(randomQuestion)
   return randomQuestion
 }
 
