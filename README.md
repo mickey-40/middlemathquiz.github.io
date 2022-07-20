@@ -17,7 +17,6 @@ As a player, I want my game to let me enter my name so that it is displayed whil
 As a player, I want to see the timer and the score go down as time goes on.
 As a player, I want my game to recognize a correct answer to a question so the score will go up.
 As a player, I want my game to show the time left when answering a question.
-
 As a player, I would like to be able to restart the game after the game ends.
 As a player, I want the UI to be engaging and out of the way so that I enjoy the experience of playing the game.**
 
@@ -26,5 +25,4 @@ As a player, I would like a victory animation when I am in the top 10.
 As a player, I would like to pick a difficulty level.
 As a player, I would like to hear an audible sound while I am playing the game.
 As a player, I would like to play this game online vs another player.
-
 As a player, I would like to be informed of the score when the game is over and see if I am in the top 10.

@@ -36,7 +36,7 @@ body {
   box-shadow: 4px 5px 7px #666666;
   font-family: Arial;
   color: #000000;
-  font-size: 20px;
+  font-size: 1.8vw;
   padding: 10px 10px 10px 10px;
   border: solid #000000 2px;
   margin: auto;
@@ -63,17 +63,10 @@ body {
 }
 
 
-#timer{
+#timer, .scoremeter, .name{
   background-color: #3AB4F2;
 }
 
-.scoremeter{
-  background-color: #3AB4F2;
-}
-
-.name{
-  background-color: #3AB4F2;
-}
 #container{
   margin: auto;
   width: 60%;
@@ -134,4 +127,45 @@ body {
 
 .incorrect {
   background-color: red;
+}
+
+@media only screen and (max-width: 500px) {
+  #hud {
+    display: flex;
+    justify-content: space-between;
+    font-size: 4vw;
+    width: 90%;
+    margin: auto;
+    background-color: #3AB4F2;
+    border: 5px solid black;
+    border-radius: 7px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  .question,.choiceContainer{
+    border: 5px solid black;
+    border-radius: 7px;
+    font-size: 4vw;
+    font-weight: 400;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 5px;
+    background: #3498db;
+
+  }
+  #container{
+    margin: auto;
+    width: 90%;
+    align-items: center;   
+  }
+
+  .nameEntry{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+  }
 }
