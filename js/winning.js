@@ -9,6 +9,7 @@ const playerInfo = JSON.parse(localStorage.getItem('player'))
 
 const highScores = JSON.parse(localStorage.getItem('highScores')) || []
 
+
 console.log(playerInfo)
 console.log(highScores)
 
@@ -25,6 +26,12 @@ highScores.sort((a,b) => {
   return b.score - a.score;
 })
 
-highScores.splice(5)
+highScores.splice(10)
 
 console.log(highScores)
+
+localStorage.setItem('highScores', JSON.stringify(highScores))
+console.log(highScores)
+
+
+
