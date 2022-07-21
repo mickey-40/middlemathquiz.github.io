@@ -1,7 +1,9 @@
+//targets where the high scores are going to go
 const highScoreList = document.querySelector('#highScoreList')
+//get the high score array from localStorage
 const highScore = JSON.parse(localStorage.getItem('highScores')) || []
-const newListItem = document.createElement('li')
-const listText = 
+
+
 console.log(highScore.length)
 
 
