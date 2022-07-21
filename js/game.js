@@ -10,7 +10,7 @@ let timerInterval
 let scoreInterval
 let startingTimer 
 let startingScore 
-let maxQuesitons = 5
+let maxQuesitons = 10
 let randomQuestion
 let usedQuestionsArray = []
 let answerNumber
@@ -207,14 +207,14 @@ const questions = [
 
   }
 ]
-
+//player information in a class
 class Player {
   constructor(name, score = 0){
     this.name = name,
     this.score = score
   }
 }
-
+//class declartation
 const player1 = new Player()
 
 //Function that stores the player name and starts the game.
@@ -257,32 +257,41 @@ const scoreDecreasing = () => {
     clearInterval(scoreInterval)
   }
 }
+
+//function that starts intervals for the question
 const startIntervals = () => {
   timerInterval = setInterval(timer, 1000)
   scoreInterval = setInterval(scoreDecreasing, 1000)
 }
+//function that stops intervals 
 const clearIntervals = () => {
   clearInterval(timerInterval)
   clearInterval(scoreInterval)
 }
-
+//function that gets a random question from the questions array
 const getRandomQuestion = () => {
   console.log('question Array length: ', questions.length)
+  //assigns randomNum to a random number no bigger to the length of the questions array
   let randomNum = Math.floor(Math.random() * questions.length)
+  //assigns randomQuestion to a random question from the questions array
   randomQuestion = questions[randomNum]
+  //pushes the question object into the usedQuestionsArray 
   usedQuestionsArray.push(randomQuestion)
   console.log('usedQuestionsArray length: ' ,usedQuestionsArray.length)
   console.log(usedQuestionsArray)
+  //takes the question picked out of the questions array
   questions.splice(randomNum,1)
   console.log('question Array length: ', questions.length)
   console.log(questions)
   console.log(randomQuestion)
+  //returns the random question picked
   return randomQuestion
 }
 
 const getNewQuestion = () => {
   //Assigns name and score to the game screen
   scoreBoard.innerText = player1.name + ' ' + player1.score
+  //ends the game after the number of set questions and saves the player name and score
   if (usedQuestionsArray.length >= maxQuesitons){
     localStorage.setItem('score', player1.score)
     console.log(player1)
@@ -291,11 +300,16 @@ const getNewQuestion = () => {
     return
    
   }
+  //sets the timer and beginning score
   startingTimer = 30
   startingScore = 1000
+  //starts the timer and decreasing the score
   startIntervals()
+  //gets the random question
   getRandomQuestion()
+  //numbers  the question and inputs the question 
   questionElement.innerText = `${usedQuestionsArray.length}. ${randomQuestion.question}`
+  //method that assigns a number to the correct answer 
   choices.forEach(function(choice){
     answerNumber = choice.dataset['number']
     choice.innerText = randomQuestion['choice' + answerNumber]
@@ -305,30 +319,40 @@ const getNewQuestion = () => {
 }
 
  
-
+//
 choices.forEach(function(choice){
   choice.addEventListener('click', e => {
     selectedChoice = e.target
     selectedAnswer = selectedChoice.dataset['number']
+    //checking the selected answer is the same as the correct answer 
     if (selectedAnswer == randomQuestion.answer){
       console.log('right')
+      //turns the parent div green if correct
       selectedChoice.parentElement.classList.add('correct')
+      //after 1 second parent div turns back to original color
       setTimeout(() => {
         selectedChoice.parentElement.classList.remove('correct')
 
       }, 100);
+      //adds the score on the run down score to the player's total
       player1.score += startingScore
       console.log(player1.score)
+      //stops timer and decreasing score
       clearIntervals()
+      //gets new question
       getNewQuestion()
     } else {
       console.log('wrong')
+      //turns parent div red
       selectedChoice.parentElement.classList.add('incorrect')
+      //after 1 second parent div turns back to original color
       setTimeout(() => {
         selectedChoice.parentElement.classList.remove('incorrect')
 
       }, 100);
+      //stops timer and decreasing score
       clearIntervals()
+      //gets new question
       getNewQuestion()
 
     }
