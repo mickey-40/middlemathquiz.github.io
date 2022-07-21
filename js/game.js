@@ -339,8 +339,7 @@ choices.forEach(function(choice){
       console.log(player1.score)
       //stops timer and decreasing score
       clearIntervals()
-      //gets new question
-      getNewQuestion()
+      
     } else {
       console.log('wrong')
       //turns parent div red
@@ -352,10 +351,11 @@ choices.forEach(function(choice){
       }, 100);
       //stops timer and decreasing score
       clearIntervals()
-      //gets new question
-      getNewQuestion()
+      
 
     }
+    //gets new question
+    getNewQuestion()
   })
 })
 
