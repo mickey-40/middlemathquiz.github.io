@@ -6,13 +6,13 @@ My app is called Middle Math Trivia Game. It is an app for players who want to c
 Wire Frames
 Copy and paste or drag and drop your images here.
 112700B7-9A72-4D66-A375-45780679F70D_1_105_c
-
+![alt text](http://url/to/img/starting_screen.jpeg)
 
 052A11A1-686D-428A-9C2D-7D88FE89FB00_1_105_c
+![alt text](http://url/to/img/question_screen.jpeg)
 
 DB329892-FE0E-4DBF-BBFD-483A64767A92_1_102_o
 ![alt text](http://url/to/img/winning_screen.jpeg)
-
 MVP Goals
 As a player, I want my game to let me enter my name so that it is displayed while playing.
 As a player, I want to see the timer and the score go down as time goes on.
