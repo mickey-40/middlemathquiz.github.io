@@ -5,13 +5,13 @@ My app is called Middle Math Trivia Game. It is an app for players who want to c
 
 Wire Frames
 Copy and paste or drag and drop your images here.
-112700B7-9A72-4D66-A375-45780679F70D_1_105_c
+
 ![alt text](img/starting_screen.jpeg)
 
-052A11A1-686D-428A-9C2D-7D88FE89FB00_1_105_c
+
 ![alt text](img/question_screen.jpeg)
 
-DB329892-FE0E-4DBF-BBFD-483A64767A92_1_102_o
+
 ![alt text](img/winning_screen.jpeg)
 MVP Goals
 As a player, I want my game to let me enter my name so that it is displayed while playing.
@@ -27,3 +27,7 @@ As a player, I would like to pick a difficulty level.
 As a player, I would like to hear an audible sound while I am playing the game.
 As a player, I would like to play this game online vs another player.
 As a player, I would like to be informed of the score when the game is over and see if I am in the top 10.
+
+GitHub Repository Link: https://github.com/mickey-40/middlemathquiz.github.io
+
+GitHub Pages Link: https://mickey-40.github.io/middlemathquiz.github.io/
